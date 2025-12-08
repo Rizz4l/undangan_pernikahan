@@ -1,34 +1,41 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Undangan Pernikahan</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Undangan Pernikahan Ahmad & Aisyah</title>
 
-  <!-- Google Font -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --primary: #0B57D0;
-      --secondary: #f4f6fb;
-      --accent: #ebc26b;
-      --text: #1f2933;
+      --primary-dark: #0946a7;
+      --accent: #f9d976;
+      --bg: #f1f5f9;
+      --text: #111827;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
       font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #f1f5f9;
+      background: radial-gradient(circle at top left, #dbeafe 0, #eff6ff 35%, #e5e7eb 70%, #f9fafb 100%);
       color: var(--text);
-      line-height: 1.6;
+      min-height: 100vh;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
     .wrapper {
@@ -38,105 +45,185 @@
     }
 
     .card {
-      background: #ffffff;
-      border-radius: 24px;
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(14px);
+      border-radius: 28px;
+      box-shadow: 0 30px 80px rgba(15,23,42,0.18);
       overflow: hidden;
       margin-top: 18px;
-    }
-
-    /* HERO SECTION */
-    .hero {
-      background: linear-gradient(145deg, #0B57D0, #2563eb);
-      color: #fff;
-      padding: 40px 20px 32px;
-      text-align: center;
       position: relative;
+      border: 1px solid rgba(148,163,184,0.25);
     }
 
-    .hero::before,
-    .hero::after {
-      content: "";
+    /* FLOATING ORNAMENTS */
+    .ornament {
       position: absolute;
       border-radius: 999px;
-      opacity: .15;
-      background: #fff;
+      background: radial-gradient(circle, rgba(248,250,252,0.95), rgba(191,219,254,0.4));
+      opacity: 0.9;
+      filter: blur(0.4px);
+      pointer-events: none;
+      animation: float 12s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+    .ornament.o1 { width: 220px; height: 220px; top: -80px; left: -60px; animation-delay: -2s;}
+    .ornament.o2 { width: 260px; height: 260px; bottom: -120px; right: -80px; animation-delay: -4s;}
+    .ornament.o3 { width: 120px; height: 120px; top: 40%; left: -40px; animation-delay: -6s;}
+
+    @keyframes float {
+      to {
+        transform: translate3d(20px, -20px, 0) scale(1.05);
+        opacity: 0.7;
+      }
     }
 
-    .hero::before {
-      width: 220px;
-      height: 220px;
-      top: -80px;
-      left: -40px;
-    }
-
-    .hero::after {
-      width: 260px;
-      height: 260px;
-      bottom: -120px;
-      right: -60px;
-    }
-
-    .hero-inner {
+    /* HERO / COVER */
+    .hero {
+      background: radial-gradient(circle at top, #2563eb, #0f4fb8 55%, #0B57D0 100%);
+      color: white;
+      padding: 42px 20px 30px;
+      text-align: center;
       position: relative;
       z-index: 1;
     }
 
-    .hero-small {
-      font-size: 13px;
-      letter-spacing: .16em;
+    .hero-badge {
+      font-size: 11px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      opacity: .85;
+      opacity: 0.88;
     }
 
     .hero-title {
       font-family: "Great Vibes", cursive;
-      font-size: 44px;
-      margin: 10px 0 4px;
+      font-size: 46px;
+      margin: 14px 0 2px;
     }
 
     .hero-names {
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 500;
     }
 
-    .hero-date {
-      margin-top: 14px;
-      font-size: 14px;
-      opacity: .9;
+    .hero-divider {
+      width: 70px;
+      height: 2px;
+      background: rgba(255,255,255,0.75);
+      border-radius: 999px;
+      margin: 16px auto 8px;
     }
 
-    .hero-divider {
-      width: 60px;
-      height: 2px;
-      background: rgba(255,255,255,.6);
-      margin: 16px auto 6px;
+    .hero-date {
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    .hero-location {
+      margin-top: 4px;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .hero-bottom {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .hero-note {
+      font-size: 11px;
+      opacity: 0.8;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 20px;
       border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: transform .12s ease, box-shadow .12s ease, background .15s ease, color .15s ease;
+    }
+    .btn-primary {
+      background: #f9fafb;
+      color: #0B57D0;
+      box-shadow: 0 10px 25px rgba(15,23,42,0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 35px rgba(15,23,42,0.45);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(248,250,252,0.9);
+      color: white;
+      padding: 7px 14px;
+      font-size: 12px;
+    }
+    .btn-outline:hover {
+      background: rgba(15,23,42,0.35);
+    }
+
+    /* COUNTDOWN */
+    .countdown {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .count-box {
+      background: rgba(15,23,42,0.18);
+      padding: 7px 12px;
+      min-width: 60px;
+      border-radius: 16px;
+      text-align: center;
+    }
+    .count-number {
+      font-weight: 600;
+      font-size: 17px;
+    }
+    .count-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.8;
     }
 
     /* SECTIONS */
     .section {
-      padding: 24px 20px;
-      border-top: 1px solid #e5e7eb;
+      padding: 26px 22px;
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(226,232,240,0.9);
+    }
+
+    .section.center {
+      text-align: center;
     }
 
     .section-title {
       font-size: 18px;
       font-weight: 600;
-      margin-bottom: 10px;
       color: var(--primary);
+      margin-bottom: 6px;
     }
 
     .section-subtitle {
-      font-size: 13px;
+      font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: .16em;
-      color: #6b7280;
+      letter-spacing: .18em;
+      color: #9ca3af;
       margin-bottom: 4px;
-    }
-
-    .center {
-      text-align: center;
     }
 
     .muted {
@@ -144,35 +231,11 @@
       font-size: 13px;
     }
 
-    /* COUNTDOWN */
-    .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 12px;
-      flex-wrap: wrap;
-    }
+    .mt-2 { margin-top: 8px; }
+    .mt-3 { margin-top: 12px; }
+    .mt-4 { margin-top: 16px; }
 
-    .count-box {
-      background: rgba(15,23,42,.06);
-      border-radius: 16px;
-      padding: 8px 12px;
-      width: 70px;
-      text-align: center;
-    }
-
-    .count-number {
-      font-weight: 600;
-      font-size: 18px;
-      color: #1f2937;
-    }
-
-    .count-label {
-      font-size: 11px;
-      color: #6b7280;
-    }
-
-    /* DETAIL ACARA */
+    /* GRID DETAIL ACARA */
     .grid {
       display: grid;
       gap: 16px;
@@ -180,15 +243,29 @@
 
     @media (min-width: 640px) {
       .grid-2 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0,1fr));
       }
     }
 
     .event-card {
-      background: var(--secondary);
-      border-radius: 16px;
+      background: #f3f4ff;
+      background: linear-gradient(135deg, #eff6ff, #e0ecff);
+      border-radius: 18px;
       padding: 14px 16px;
-      border: 1px solid #e5e7eb;
+      border: 1px solid #dbeafe;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      background: #eef2ff;
+      color: #4338ca;
+      margin-bottom: 6px;
     }
 
     .event-title {
@@ -205,100 +282,114 @@
 
     .event-place {
       font-size: 13px;
-      color: #374151;
+      color: #1f2937;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: #e0f2fe;
-      color: #0369a1;
-      font-size: 11px;
-      font-weight: 500;
-      margin-bottom: 6px;
-    }
-
-    /* BUTTONS */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 10px 18px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: transform .12s ease, box-shadow .12s ease, background .15s ease;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.30);
-    }
-
-    .btn-primary:hover {
-      background: #0a4ac0;
-      transform: translateY(-1px);
-      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.35);
-    }
-
-    .btn-outline {
-      background: #fff;
-      color: #374151;
-      border: 1px solid #e5e7eb;
-    }
-
-    .btn-outline:hover {
-      background: #f3f4f6;
-    }
-
-    .btn-sm {
-      padding: 7px 14px;
-      font-size: 12px;
-    }
-
-    /* QUOTE / DOA */
     .quote {
-      background: var(--secondary);
+      background: #f9fafb;
       border-radius: 16px;
+      border: 1px dashed #d4d4ff;
       padding: 14px 16px;
       font-size: 13px;
       color: #4b5563;
-      border: 1px dashed #cbd5f5;
     }
 
     .quote b {
       color: #111827;
     }
 
-    /* RSVP & FOOTER */
     .stack-md {
       display: flex;
       flex-direction: column;
       gap: 10px;
       align-items: center;
     }
-
     @media (min-width: 640px) {
-      .stack-md {
-        flex-direction: row;
-        justify-content: center;
-      }
+      .stack-md { flex-direction: row; justify-content: center; }
     }
 
     .footer {
       text-align: center;
       font-size: 11px;
       color: #9ca3af;
-      margin: 16px 0;
+      margin: 16px 0 8px;
+    }
+
+    /* ANIMASI SCROLL */
+    .animate-item {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .animate-item.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* SPLASH / COVER "BUKA UNDANGAN" */
+    .splash {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #2563eb, #0B57D0 40%, #020617 120%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      color: white;
+    }
+
+    .splash-inner {
+      text-align: center;
+      padding: 26px 22px 30px;
+      max-width: 360px;
+      border-radius: 24px;
+      background: radial-gradient(circle at top, rgba(248,250,252,0.2), rgba(15,23,42,0.3));
+      border: 1px solid rgba(191,219,254,0.5);
+      box-shadow: 0 24px 60px rgba(15,23,42,0.7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .splash-inner::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: conic-gradient(from 180deg, rgba(248,250,252,0.35), transparent, transparent);
+      opacity: 0.7;
+      animation: rotateGlow 12s linear infinite;
+    }
+
+    .splash-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .splash-title {
+      font-family: "Great Vibes", cursive;
+      font-size: 40px;
+      margin-bottom: 4px;
+    }
+
+    .splash-names {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .splash-note {
+      font-size: 12px;
+      opacity: 0.9;
+      margin-top: 10px;
+      margin-bottom: 16px;
+    }
+
+    @keyframes rotateGlow {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .hidden {
+      display: none;
     }
 
     /* SMALL LABEL */
@@ -309,72 +400,122 @@
       color: #9ca3af;
       margin-bottom: 2px;
     }
+
+    /* RESPONSIVE TWEAKS */
+    @media (max-width: 480px) {
+      .hero-title { font-size: 38px; }
+      .hero-names { font-size: 17px; }
+      .section { padding-inline: 18px; }
+    }
+
   </style>
 </head>
 <body>
 
+<!-- SPLASH COVER "BUKA UNDANGAN" -->
+<div id="splash" class="splash">
+  <div class="splash-inner">
+    <div class="splash-content">
+      <p class="hero-badge" style="font-size:11px;">Undangan Pernikahan</p>
+      <h1 class="splash-title">The Wedding of</h1>
+      <p class="splash-names">Ahmad &amp; Aisyah</p> <!-- GANTI NAMA DI SINI -->
+      <p class="splash-note">
+        Kepada Yth.<br/>
+        Bapak/Ibu/Saudara/i<br/>
+        <span style="opacity:.85;">Kami mengundang Anda untuk hadir di hari bahagia kami.</span>
+      </p>
+      <button id="openInvite" class="btn btn-primary">
+        💌 Buka Undangan
+      </button>
+      <p class="hero-note" style="margin-top:10px;font-size:11px;opacity:.85;">
+        Geser / scroll ke bawah setelah undangan terbuka
+      </p>
+    </div>
+  </div>
+</div>
+
 <div class="wrapper">
   <div class="card">
 
+    <div class="ornament o1"></div>
+    <div class="ornament o2"></div>
+    <div class="ornament o3"></div>
+
     <!-- HERO -->
     <section class="hero">
-      <div class="hero-inner">
-        <p class="hero-small">Undangan Pernikahan</p>
-        <h1 class="hero-title">The Wedding of</h1>
-        <p class="hero-names">Ahmad &amp; Aisyah</p>
+      <div class="hero-inner animate-item">
+        <p class="hero-badge">Undangan Pernikahan</p>
+        <h1 class="hero-title">Ahmad &amp; Aisyah</h1> <!-- GANTI NAMA DI SINI -->
+        <p class="hero-names">Sabtu, 15 Februari 2025</p> <!-- GANTI TANGGAL DI SINI -->
 
         <div class="hero-divider"></div>
 
-        <p class="hero-date">
-          Sabtu, 15 Februari 2025<br>
-          Gedung Graha Cinta, Bandung
+        <p class="hero-date">Pukul 08.00 WIB s.d. selesai</p> <!-- GANTI JAM -->
+        <p class="hero-location">
+          Gedung Graha Cinta, Bandung <!-- GANTI LOKASI -->
         </p>
 
-        <!-- COUNTDOWN -->
-        <div id="countdown" class="countdown" aria-label="Hitung mundur hari pernikahan">
-          <div class="count-box">
-            <div class="count-number" id="cd-days">0</div>
-            <div class="count-label">Hari</div>
+        <div class="hero-bottom">
+          <div class="countdown" aria-label="Hitung mundur hari pernikahan">
+            <div class="count-box">
+              <div class="count-number" id="cd-days">0</div>
+              <div class="count-label">Hari</div>
+            </div>
+            <div class="count-box">
+              <div class="count-number" id="cd-hours">0</div>
+              <div class="count-label">Jam</div>
+            </div>
+            <div class="count-box">
+              <div class="count-number" id="cd-minutes">0</div>
+              <div class="count-label">Menit</div>
+            </div>
+            <div class="count-box">
+              <div class="count-number" id="cd-seconds">0</div>
+              <div class="count-label">Detik</div>
+            </div>
           </div>
-          <div class="count-box">
-            <div class="count-number" id="cd-hours">0</div>
-            <div class="count-label">Jam</div>
-          </div>
-          <div class="count-box">
-            <div class="count-number" id="cd-minutes">0</div>
-            <div class="count-label">Menit</div>
-          </div>
-          <div class="count-box">
-            <div class="count-number" id="cd-seconds">0</div>
-            <div class="count-label">Detik</div>
-          </div>
+
+          <button onclick="document.getElementById('section-detail').scrollIntoView({behavior:'smooth'})"
+                  class="btn btn-outline">
+            ↓ Lihat Detail Acara
+          </button>
         </div>
       </div>
     </section>
 
     <!-- PEMBUKA -->
-    <section class="section center">
+    <section class="section center animate-item">
       <p class="section-subtitle">Bismillahirrahmanirrahim</p>
       <h2 class="section-title">Assalamu’alaikum Warahmatullahi Wabarakatuh</h2>
-      <p class="mt-2 muted" style="margin-top:8px;">
+      <p class="mt-2 muted">
         Dengan memohon rahmat dan ridha Allah Subhanahu Wa Ta’ala, kami bermaksud
-        menyelenggarakan akad dan resepsi pernikahan putra-putri kami.
+        menyelenggarakan akad dan resepsi pernikahan putra-putri kami:
+      </p>
+
+      <p class="mt-3" style="font-size:16px;">
+        <b>Ahmad Fulan</b><br/>
+        <span class="muted" style="font-size:12px;">Putra dari Bapak Fulan &amp; Ibu Fulanah</span>
+      </p>
+      <p style="margin:8px 0;font-size:13px;">&amp;</p>
+      <p style="font-size:16px;">
+        <b>Aisyah Fulana</b><br/>
+        <span class="muted" style="font-size:12px;">Putri dari Bapak Fulan &amp; Ibu Fulanah</span>
       </p>
     </section>
 
     <!-- DETAIL ACARA -->
-    <section class="section">
-      <p class="label-top">Detail Acara</p>
+    <section id="section-detail" class="section animate-item">
+      <p class="section-subtitle">Detail Acara</p>
       <h2 class="section-title">Waktu &amp; Tempat</h2>
 
-      <div class="grid grid-2" style="margin-top:12px;">
+      <div class="grid grid-2 mt-3">
         <div class="event-card">
           <span class="badge">Akad Nikah</span>
-          <div class="event-title">Sabtu, 15 Februari 2025</div>
-          <div class="event-time">Pukul 08.00 – 09.30 WIB</div>
+          <div class="event-title">Sabtu, 15 Februari 2025</div> <!-- GANTI TANGGAL -->
+          <div class="event-time">Pukul 08.00 – 09.30 WIB</div>  <!-- GANTI JAM -->
           <div class="event-place">
-            Masjid Al-Ikhlas<br>
-            Jl. Contoh Raya No. 123, Bandung
+            Masjid Al-Ikhlas<br/>
+            Jl. Contoh Raya No. 123, Bandung <!-- GANTI ALAMAT -->
           </div>
         </div>
 
@@ -382,98 +523,105 @@
           <span class="badge" style="background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;">
             Resepsi
           </span>
-          <div class="event-title">Sabtu, 15 Februari 2025</div>
-          <div class="event-time">Pukul 11.00 – 14.00 WIB</div>
+          <div class="event-title">Sabtu, 15 Februari 2025</div> <!-- GANTI -->
+          <div class="event-time">Pukul 11.00 – 14.00 WIB</div> <!-- GANTI -->
           <div class="event-place">
-            Gedung Graha Cinta<br>
-            Jl. Kebahagiaan No. 45, Bandung
+            Gedung Graha Cinta<br/>
+            Jl. Kebahagiaan No. 45, Bandung <!-- GANTI -->
           </div>
         </div>
       </div>
 
-      <div class="center" style="margin-top:18px;">
-        <a href="https://maps.google.com"
+      <div class="center mt-3">
+        <a href="https://maps.google.com"  <!-- GANTI LINK GOOGLE MAPS -->
            target="_blank"
-           class="btn btn-outline btn-sm">
+           class="btn btn-outline">
           📍 Buka Lokasi di Google Maps
         </a>
       </div>
     </section>
 
     <!-- DOA / QUOTE -->
-    <section class="section">
-      <p class="label-top">Ucapan Doa</p>
+    <section class="section animate-item">
+      <p class="section-subtitle">Doa & Harapan</p>
       <div class="quote">
-        <p><b>"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia
+        <p>
+          <b>"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia
           menciptakan pasangan-pasangan untukmu dari jenismu sendiri,
           agar kamu cenderung dan merasa tenteram kepadanya, dan Dia
-          menjadikan di antaramu rasa kasih dan sayang."</b></p>
-        <p style="margin-top:6px; font-size:12px;">
+          menjadikan di antaramu rasa kasih dan sayang."</b>
+        </p>
+        <p style="margin-top:6px;font-size:12px;">
           (QS. Ar-Rum: 21)
         </p>
       </div>
     </section>
 
-    <!-- RSVP & KONTAK -->
-    <section class="section center">
-      <p class="label-top">Konfirmasi Kehadiran</p>
+    <!-- RSVP -->
+    <section class="section center animate-item">
+      <p class="section-subtitle">Konfirmasi Kehadiran</p>
       <h2 class="section-title">RSVP &amp; Kontak</h2>
-      <p class="muted" style="margin-top:6px;">
-        Untuk memudahkan persiapan, kami sangat berbahagia jika Bapak/Ibu/Saudara/i
-        berkenan mengonfirmasi kehadiran.
+      <p class="mt-2 muted">
+        Untuk kemudahan persiapan, kami sangat berbahagia apabila Bapak/Ibu/Saudara/i
+        berkenan mengonfirmasi kehadiran melalui tombol di bawah ini.
       </p>
 
-      <div class="stack-md" style="margin-top:14px;">
-        <a href="https://wa.me/6281234567890?text=Assalamu%27alaikum,%20saya%20ingin%20konfirmasi%20kehadiran%20untuk%20undangan%20pernikahan."
+      <div class="stack-md mt-3">
+        <a href="https://wa.me/6281234567890?text=Assalamu%27alaikum,%20saya%20ingin%20konfirmasi%20kehadiran%20untuk%20undangan%20pernikahan%20Ahmad%20dan%20Aisyah."
            target="_blank"
            class="btn btn-primary">
           💬 Konfirmasi via WhatsApp
         </a>
 
-        <a href="https://linktr.ee/"
-           target="_blank"
-           class="btn btn-outline btn-sm">
+        <a href="https://linktr.ee/" target="_blank" class="btn btn-outline">
           🎁 Kirim Hadiah / Amplop Digital
         </a>
       </div>
     </section>
 
     <!-- PENUTUP -->
-    <section class="section center">
+    <section class="section center animate-item">
       <p class="muted">
         Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
         Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
       </p>
-      <p class="muted" style="margin-top:8px;">
+      <p class="muted mt-2">
         Wassalamu’alaikum Warahmatullahi Wabarakatuh.
       </p>
 
-      <p style="margin-top:16px; font-size:13px;">
-        Hormat kami yang berbahagia,<br>
-        <b>Keluarga Besar Ahmad &amp; Keluarga Besar Aisyah</b>
+      <p class="mt-3" style="font-size:13px;">
+        Hormat kami yang berbahagia,<br/>
+        <b>Keluarga Besar Ahmad &amp; Keluarga Besar Aisyah</b> <!-- GANTI NAMA KELUARGA -->
       </p>
     </section>
-
   </div>
 
   <p class="footer">
-    Dibuat dengan ❤️ | Silakan edit nama, tanggal, dan detail lainnya di file <b>index.html</b>.
+    Undangan ini dibuat menggunakan HTML, CSS, dan JavaScript — silakan sesuaikan teks & data sesuai kebutuhan.
   </p>
 </div>
 
 <script>
+  // ====== SPLASH HANDLER ======
+  const splash = document.getElementById('splash');
+  const openBtn = document.getElementById('openInvite');
+
+  openBtn.addEventListener('click', () => {
+    splash.classList.add('hidden');
+  });
+
   // ====== COUNTDOWN ======
-  // GANTI TANGGAL PERNIKAHAN DI SINI (tahun, bulan-1, tanggal, jam, menit)
-  const weddingDate = new Date(2025, 1, 15, 8, 0, 0); // 15 Feb 2025 08:00
+  // GANTI TANGGAL PERNIKAHAN DI SINI: (tahun, bulan-1, tanggal, jam, menit)
+  const weddingDate = new Date(2025, 1, 15, 8, 0, 0); // 15 Februari 2025 08:00 WIB
 
   function updateCountdown() {
     const now = new Date().getTime();
     const distance = weddingDate.getTime() - now;
 
-    const dEl = document.getElementById("cd-days");
-    const hEl = document.getElementById("cd-hours");
-    const mEl = document.getElementById("cd-minutes");
-    const sEl = document.getElementById("cd-seconds");
+    const dEl = document.getElementById('cd-days');
+    const hEl = document.getElementById('cd-hours');
+    const mEl = document.getElementById('cd-minutes');
+    const sEl = document.getElementById('cd-seconds');
 
     if (distance <= 0) {
       dEl.textContent = 0;
@@ -483,8 +631,8 @@
       return;
     }
 
-    const days    = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
@@ -496,6 +644,25 @@
 
   updateCountdown();
   setInterval(updateCountdown, 1000);
+
+  // ====== SCROLL ANIMATION ======
+  const animatedItems = document.querySelectorAll('.animate-item');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  animatedItems.forEach(item => observer.observe(item));
+
+  // OPTIONAL: AUTOCLOSE SPLASH KALAU DIREFRESH (misal setelah 3 detik)
+  // setTimeout(() => { splash.classList.add('hidden'); }, 3000);
 </script>
 
 </body>
