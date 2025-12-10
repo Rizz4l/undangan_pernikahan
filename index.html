@@ -65,45 +65,52 @@
     }
 
     /* HERO (foto dipasang sebagai <img> agar responsif) */
-    .hero {
-      background: linear-gradient(rgba(3,37,114,0.58), rgba(3,37,114,0.58));
-      color: white;
-      padding: 42px 20px 30px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      min-height: 360px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-direction:column;
-      overflow: hidden;
-    }
+    /* ===== HERO (restored responsive version) ===== */
+.hero {
+  /* hanya overlay tipis (biar teks tetap terbaca) */
+  background: linear-gradient(rgba(3,37,114,0.42), rgba(3,37,114,0.42));
+  color: white;
+  padding: 42px 20px 30px;
+  text-align: center;
+  position: relative;        /* posisi relatif untuk hero-photo absolute */
+  z-index: 1;
+  min-height: 360px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  overflow: hidden;
+}
 
-    .hero-photo {
-      position: absolute;
-      right: 28px;
-      bottom: 0;
-      max-width: 46%;
-      height: auto;
-      object-fit: contain;
-      z-index: 1;
-      pointer-events: none;
-      transform: translateY(6%);
-      transition: transform .25s ease, max-width .2s ease, right .2s ease;
-      opacity: 0.98;
-    }
+/* foto pasangan sebagai elemen <img> - gunakan file PNG cutout transparan */
+.hero-photo {
+  position: absolute;
+  right: 28px;               /* jarak dari kanan card */
+  bottom: 0;                 /* rata bawah card */
+  max-width: 46%;            /* lebar responsif relatif ke card */
+  height: auto;
+  object-fit: contain;
+  z-index: 1;                /* gambar berada di bawah teks (hero-inner z-index:2) */
+  pointer-events: none;      /* biar tidak mengganggu klik */
+  transform: translateY(6%);
+  transition: transform .25s ease, max-width .2s ease, right .2s ease;
+  opacity: 1;
+}
 
-    .hero-inner { position: relative; z-index: 2; max-width: 780px; padding: 0 14px; }
+/* teks di atas gambar */
+.hero-inner { position: relative; z-index: 2; max-width: 780px; padding: 0 14px; }
 
-    .hero-badge { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.88; }
-    .hero-title { font-family: "Great Vibes", cursive; font-size: 46px; margin: 14px 0 2px; }
-    .hero-names { font-size: 19px; font-weight: 500; }
-    .hero-divider { width: 70px; height: 2px; background: rgba(255,255,255,0.75); border-radius: 999px; margin: 16px auto 8px; }
-    .hero-date { font-size: 14px; opacity: 0.95; }
-    .hero-location { margin-top: 4px; font-size: 13px; opacity: 0.9; }
-    .hero-bottom { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; align-items: center; }
-    .hero-note { font-size: 11px; opacity: 0.8; }
+/* responsive tweaks: kecilkan gambar di tablet, sembunyikan di mobile */
+@media (max-width: 1024px) {
+  .hero-photo { max-width: 38%; right: 18px; transform: translateY(4%); }
+}
+@media (max-width: 640px) {
+  .hero-photo { display: none; } /* pastikan tidak memotong teks di layar kecil */
+  .hero { padding: 28px 14px; min-height: 300px; }
+  .hero-title { font-size: 34px; }
+  .hero-names { font-size: 16px; }
+}
+
 
     /* BUTTONS */
     .btn {
@@ -221,32 +228,36 @@
       <div class="ornament o3"></div>
 
       <!-- HERO -->
-      <section class="hero">
-        <!-- Hero photo (ganti 'undangan.jpg' jika file berbeda) -->
-        <img src="undangan.jpg" alt="Pasangan" class="hero-photo">
+      <!-- HERO (RESTORED) -->
+<section class="hero">
+  <!-- Gunakan file PNG yang sudah dihapus background (cutout) -->
+  <img src="53b249a9-2a34-465c-b44a-cbf6bf8e32d2.png" alt="Pasangan" class="hero-photo">
 
-        <div class="hero-inner animate-item">
-          <p class="hero-badge">Undangan Pernikahan</p>
-          <h1 class="hero-title">Pani &amp; Rahma</h1>
-          <p class="hero-names">Minggu, 04 Januari 2026</p>
+  <div class="hero-inner animate-item">
+    <p class="hero-badge">Undangan Pernikahan</p>
+    <h1 class="hero-title">Pani &amp; Rahma</h1>
+    <p class="hero-names">Minggu, 04 Januari 2026</p>
 
-          <div class="hero-divider"></div>
+    <div class="hero-divider"></div>
 
-          <p class="hero-date">Pukul 09.00 WIB s.d. selesai</p>
-          <p class="hero-location">Kp. Sukananjung RT.22/06 Ds. Sukasetia Kec. Cisayong Kab. Tasikmalaya</p>
+    <p class="hero-date">Pukul 09.00 WIB s.d. selesai</p>
+    <p class="hero-location">Kp. Sukananjung RT.22/06 Ds. Sukasetia Kec. Cisayong Kab. Tasikmalaya</p>
 
-          <div class="hero-bottom">
-            <div class="countdown" aria-label="Hitung mundur hari pernikahan">
-              <div class="count-box"><div class="count-number" id="cd-days">0</div><div class="count-label">Hari</div></div>
-              <div class="count-box"><div class="count-number" id="cd-hours">0</div><div class="count-label">Jam</div></div>
-              <div class="count-box"><div class="count-number" id="cd-minutes">0</div><div class="count-label">Menit</div></div>
-              <div class="count-box"><div class="count-number" id="cd-seconds">0</div><div class="count-label">Detik</div></div>
-            </div>
+    <div class="hero-bottom">
+      <div class="countdown" aria-label="Hitung mundur hari pernikahan">
+        <div class="count-box"><div class="count-number" id="cd-days">0</div><div class="count-label">Hari</div></div>
+        <div class="count-box"><div class="count-number" id="cd-hours">0</div><div class="count-label">Jam</div></div>
+        <div class="count-box"><div class="count-number" id="cd-minutes">0</div><div class="count-label">Menit</div></div>
+        <div class="count-box"><div class="count-number" id="cd-seconds">0</div><div class="count-label">Detik</div></div>
+      </div>
 
-            <button onclick="document.getElementById('section-detail').scrollIntoView({behavior:'smooth'})" class="btn btn-outline">↓ Lihat Detail Acara</button>
-          </div>
-        </div>
-      </section>
+      <button onclick="document.getElementById('section-detail').scrollIntoView({behavior:'smooth'})" class="btn btn-outline">
+        ↓ Lihat Detail Acara
+      </button>
+    </div>
+  </div>
+</section>
+
 
       <!-- PEMBUKA -->
       <section class="section center animate-item">
@@ -447,3 +458,4 @@
   </script>
 </body>
 </html>
+
