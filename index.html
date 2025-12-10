@@ -1,480 +1,318 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Undangan Pernikahan Pani & Rahma</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Undangan Pernikahan Pani & Rahma</title>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --primary: #0B57D0;
-      --primary-dark: #0946a7;
-      --accent: #f9d976;
-      --bg: #f1f5f9;
-      --text: #111827;
-    }
+<style>
+:root {
+  --primary: #0B57D0;
+  --primary-dark: #0946a7;
+  --accent: #f9d976;
+  --bg: #f1f5f9;
+  --text: #111827;
+}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: radial-gradient(circle at top left, #dbeafe 0, #eff6ff 35%, #e5e7eb 70%, #f9fafb 100%);
-      color: var(--text);
-      min-height: 100vh;
-      scroll-behavior: smooth;
-    }
+body {
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at top left, #dbeafe 0, #eff6ff 35%, #e5e7eb 70%, #f9fafb 100%);
+  color: var(--text);
+  min-height: 100vh;
+  scroll-behavior: smooth;
+}
 
-    a { text-decoration: none; color: inherit; }
+.wrapper { max-width: 960px; margin: 0 auto; padding: 16px; }
 
-    .wrapper { max-width: 960px; margin: 0 auto; padding: 16px; }
+/* CARD */
+.card {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 28px;
+  box-shadow: 0 30px 80px rgba(15,23,42,0.18);
+  overflow: hidden;
+  margin-top: 18px;
+  position: relative;
+  border: 1px solid rgba(148,163,184,0.25);
+}
 
-    /* CARD */
-    .card {
-      background: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95));
-      backdrop-filter: blur(14px);
-      border-radius: 28px;
-      box-shadow: 0 30px 80px rgba(15,23,42,0.18);
-      overflow: hidden;
-      margin-top: 18px;
-      position: relative;
-      border: 1px solid rgba(148,163,184,0.25);
-    }
+/* ORNAMENT */
+.ornament {
+  position: absolute;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(248,250,252,0.95), rgba(191,219,254,0.4));
+  opacity: 0.9;
+  filter: blur(0.4px);
+  pointer-events: none;
+  animation: float 12s ease-in-out infinite alternate;
+}
+.ornament.o1 { width: 220px; height: 220px; top: -80px; left: -60px; }
+.ornament.o2 { width: 260px; height: 260px; bottom: -120px; right: -80px; }
+.ornament.o3 { width: 120px; height: 120px; top: 40%; left: -40px; }
 
-    /* FLOATING ORNAMENTS */
-    .ornament {
-      position: absolute;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(248,250,252,0.95), rgba(191,219,254,0.4));
-      opacity: 0.9;
-      filter: blur(0.4px);
-      pointer-events: none;
-      animation: float 12s ease-in-out infinite alternate;
-      z-index: 0;
-    }
-    .ornament.o1 { width: 220px; height: 220px; top: -80px; left: -60px; animation-delay: -2s;}
-    .ornament.o2 { width: 260px; height: 260px; bottom: -120px; right: -80px; animation-delay: -4s;}
-    .ornament.o3 { width: 120px; height: 120px; top: 40%; left: -40px; animation-delay: -6s;}
+@keyframes float {
+  to { transform: translate3d(20px,-20px,0) scale(1.05); opacity: .7; }
+}
 
-    @keyframes float {
-      to { transform: translate3d(20px, -20px, 0) scale(1.05); opacity: 0.7; }
-    }
-
-    /* HERO (foto dipasang sebagai <img> agar responsif) */
-    /* ===== HERO (restored responsive version) ===== */
-/* HERO - gambar sekarang pakai <img> bukan background-image */
+/* ========== HERO RESPONSIVE FIX ========== */
 .hero {
-  background:
+  background-image:
     linear-gradient(rgba(3,37,114,0.56), rgba(3,37,114,0.56)),
-    url('undangan.jpg') no-repeat center right / cover;
-  color: white;
+    url('undangan.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right center;
   padding: 42px 20px 30px;
   text-align: center;
-  position: relative;
-  z-index: 1;
+  color: white;
   min-height: 360px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  background-attachment: scroll; /* hero biasanya scroll */
-}
-/* teks tetap di atas gambar */
-.hero .hero-inner { position: relative; z-index: 2; max-width: 720px; }
-
-/* gambar pasangan yang diposisikan di kanan desktop 
-.hero-photo {
-  position: absolute;
-  right: 28px;               /* jarak ke kanan card *
-  bottom: 0;                 /* rata bawah card *
-  max-width: 46%;            /* lebar gambar relatif ke card *
-  height: auto;
-  object-fit: contain;
-  z-index: 1;                /* di bawah .hero-inner (z-index 2) *
-  pointer-events: none;      /* biar nggak ganggu klik *
-  transform: translateY(6%); * sedikit turun supaya proporsional *
-  transition: transform .25s ease, max-width .2s ease, right .2s ease;
-  filter: none;              /* bisa di-blur kalau mau *
-}*/
-
-/* versi tablet: kecilkan gambar agar tidak menutupi teks */
-@media (max-width: 1024px) {
-  .hero-photo { max-width: 38%; right: 18px; transform: translateY(4%); }
-  .hero { min-height: 380px; }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
 }
 
-/* versi mobile: pindahkan gambar ke tengah atas atau sembunyikan */
-@media (max-width: 640px) {
-  /* Pilihan A: sembunyikan gambar di mobile */
-  .hero-photo { display: none; }
-
-  /* Jika Anda ingin menampilkan tapi tidak memotong, gunakan ini instead:
-  .hero-photo {
-    display:block;
-    position:absolute;
-    right:50%;
-    transform: translate(20%, -8%);
-    max-width: 60%;
-    opacity:0.95;
+/* Tablet */
+@media (max-width:1024px){
+  .hero{
+    background-position: center right;
+    min-height: 380px;
+    padding: 40px 18px;
   }
-  */
-  .hero { padding: 28px 14px; min-height: 300px; }
+}
+
+/* Mobile */
+@media (max-width:640px){
+  .hero{
+    background-position: center top !important;
+    background-size: cover;
+    min-height: 340px;
+    padding: 28px 14px;
+  }
   .hero-title { font-size: 34px; }
   .hero-names { font-size: 16px; }
 }
 
-/* opsional: jika ingin blur halus pada gambar */
-.hero-photo.blur { filter: blur(2px) brightness(.95); }
+.hero-inner{ position: relative; z-index:2; max-width:720px }
 
+/* BUTTON */
+.btn {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+}
+.btn-primary { background: white; color: var(--primary); }
 
-    /* BUTTONS */
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-      padding: 10px 20px; border-radius: 999px; border: none; cursor: pointer;
-      font-size: 13px; font-weight: 500; white-space: nowrap;
-      transition: transform .12s ease, box-shadow .12s ease, background .15s ease, color .15s ease;
-    }
-    .btn-primary { background: #f9fafb; color: #0B57D0; box-shadow: 0 10px 25px rgba(15,23,42,0.35); }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 16px 35px rgba(15,23,42,0.45); }
-    .btn-outline { background: transparent; border: 1px solid rgba(248,250,252,0.9); color: white; padding: 7px 14px; font-size: 12px; }
-    .btn-outline:hover { background: rgba(15,23,42,0.35); }
+/* COUNTDOWN */
+.countdown { display:flex; gap:8px; justify-content:center; margin-top:8px; }
+.count-box {
+  background: rgba(15,23,42,0.18);
+  padding: 7px 12px;
+  border-radius: 16px;
+  min-width: 60px;
+}
 
-    /* COUNTDOWN */
-    .countdown { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 8px; }
-    .count-box { background: rgba(15,23,42,0.18); padding: 7px 12px; min-width: 60px; border-radius: 16px; text-align: center; }
-    .count-number { font-weight: 600; font-size: 17px; }
-    .count-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; opacity: 0.8; }
+/* SECTION */
+.section { padding: 26px 22px; text-align:center; border-top:1px solid #e2e8f0; }
+.section-subtitle{ font-size:12px; letter-spacing:.18em; color:#9ca3af; }
+.section-title{ font-size:18px; font-weight:600; color:var(--primary); }
 
-    /* SECTIONS */
-    .section { padding: 26px 22px; position: relative; z-index: 1; border-top: 1px solid rgba(226,232,240,0.9); }
-    .section.center { text-align: center; }
-    .section-title { font-size: 18px; font-weight: 600; color: var(--primary); margin-bottom: 6px; }
-    .section-subtitle { font-size: 12px; text-transform: uppercase; letter-spacing: .18em; color: #9ca3af; margin-bottom: 4px; }
-    .muted { color: #6b7280; font-size: 13px; }
+/* SPLASH */
+.splash{
+  position: fixed;
+  inset:0;
+  background: radial-gradient(circle at top, #2563eb, #0B57D0 40%, #020617 120%);
+  display:flex; align-items:center; justify-content:center;
+  z-index:9999; color:white;
+}
+.splash-inner{
+  padding:26px; border-radius:24px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.3);
+  text-align:center;
+}
 
-    .mt-2 { margin-top: 8px; } .mt-3 { margin-top: 12px; } .mt-4 { margin-top: 16px; }
+.hidden{ display:none }
 
-    .grid { display: grid; gap: 16px; }
-    @media (min-width: 640px) { .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+/* MUSIC BUTTON */
+#music-btn{
+  position:fixed;
+  right:18px; bottom:18px;
+  width:52px; height:52px;
+  background:white; border:none;
+  border-radius:999px;
+  display:none;
+  align-items:center; justify-content:center;
+  font-size:22px; color:#0B57D0;
+  box-shadow:0 6px 18px rgba(0,0,0,0.12);
+}
 
-    .event-card { background: linear-gradient(135deg, #eff6ff, #e0ecff); border-radius: 18px; padding: 14px 16px; border: 1px solid #dbeafe; }
-    .badge { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 3px 10px; font-size: 11px; font-weight: 500; background: #eef2ff; color: #4338ca; margin-bottom: 6px; }
-
-    .quote { background: #f9fafb; border-radius: 16px; border: 1px dashed #d4d4ff; padding: 14px 16px; font-size: 13px; color: #4b5563; }
-    .quote b { color: #111827; }
-
-    .stack-md { display: flex; flex-direction: column; gap: 10px; align-items: center; }
-    @media (min-width: 640px) { .stack-md { flex-direction: row; justify-content: center; } }
-
-    .footer { text-align: center; font-size: 11px; color: #9ca3af; margin: 16px 0 8px; }
-
-    /* SPLASH */
-    .splash {
-      position: fixed; inset: 0;
-      background: radial-gradient(circle at top, #2563eb, #0B57D0 40%, #020617 120%);
-      display: flex; align-items: center; justify-content: center; z-index: 50; color: white;
-    }
-    .splash-inner {
-      text-align: center; padding: 26px 22px 30px; max-width: 360px; border-radius: 24px;
-      background: radial-gradient(circle at top, rgba(248,250,252,0.2), rgba(15,23,42,0.3));
-      border: 1px solid rgba(191,219,254,0.5); box-shadow: 0 24px 60px rgba(15,23,42,0.7);
-      position: relative; overflow: hidden;
-    }
-    .splash-inner::before { content: ""; position: absolute; inset: -40%; background: conic-gradient(from 180deg, rgba(248,250,252,0.35), transparent, transparent); opacity: 0.7; animation: rotateGlow 12s linear infinite; }
-    .splash-content { position: relative; z-index: 1; }
-    .splash-title { font-family: "Great Vibes", cursive; font-size: 40px; margin-bottom: 4px; }
-    .splash-names { font-size: 18px; font-weight: 500; }
-    .splash-note { font-size: 12px; opacity: 0.9; margin-top: 10px; margin-bottom: 16px; }
-    @keyframes rotateGlow { to { transform: rotate(360deg); } }
-
-    .hidden { display: none; }
-
-    /* MUSIC BUTTON */
-    #music-btn {
-      position: fixed; right: 18px; bottom: 18px; z-index: 9999;
-      background: #ffffff; color: #0B57D0; border-radius: 999px; width: 52px; height: 52px;
-      border: none; box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      display: none; align-items: center; justify-content: center; cursor: pointer; font-size: 18px;
-    }
-
-    /* ANIMASI SCROLL */
-    .animate-item { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-    .animate-item.in-view { opacity: 1; transform: translateY(0); }
-
-    /* RESPONSIVE: sembunyikan hero-photo di mobile */
-    @media (max-width: 1024px) { .hero-photo { max-width: 38%; right: 18px; transform: translateY(4%); } }
-    @media (max-width: 640px) { .hero-photo { display: none; } .hero { padding: 28px 14px; min-height: 300px; } .hero-title { font-size: 34px; } .hero-names { font-size: 16px; } }
-
-  </style>
+/* SCROLL ANIMATION */
+.animate-item{ opacity:0; transform:translateY(24px); transition:.7s; }
+.animate-item.in-view{ opacity:1; transform:translateY(0); }
+</style>
 </head>
+
 <body>
 
-  <!-- AUDIO BACKGROUND (no autoplay) -->
-  <audio id="bg-music" loop preload="auto">
-    <source src="videoplayback.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+<!-- AUDIO -->
+<audio id="bg-music" loop preload="auto">
+  <source src="videoplayback.mp3" type="audio/mpeg">
+</audio>
 
-  <!-- MUSIC TOGGLE (hidden until play attempt) -->
-  <button id="music-btn" aria-label="Toggle music">🔊</button>
+<button id="music-btn">🔊</button>
 
-  <!-- SPLASH COVER "BUKA UNDANGAN" -->
-  <div id="splash" class="splash">
-    <div class="splash-inner">
-      <div class="splash-content">
-        <p class="hero-badge" style="font-size:11px;">Undangan Pernikahan</p>
-        <h1 class="splash-title">The Wedding of</h1>
-        <p class="splash-names">Pani setiawan &amp; Rahma Pitriyani</p>
-        <p class="splash-note">
-          Kepada Yth.<br/>
-          Bapak/Ibu/Saudara/i<br/>
-          <span style="opacity:.85;">Kami mengundang Anda untuk hadir di hari bahagia kami.</span>
-        </p>
-        <button id="openInvite" class="btn btn-primary">💌 Buka Undangan</button>
-        <p class="hero-note" style="margin-top:10px;font-size:11px;opacity:.85;">Geser / scroll ke bawah setelah undangan terbuka</p>
-      </div>
-    </div>
+<!-- SPLASH -->
+<div id="splash" class="splash">
+  <div class="splash-inner">
+    <p style="font-size:11px;">Undangan Pernikahan</p>
+    <h1 style="font-family:'Great Vibes'; font-size:40px;">The Wedding of</h1>
+    <p style="font-size:18px; font-weight:500;">Pani & Rahma</p>
+    <p style="font-size:12px; opacity:0.9;">Kami mengundang Anda hadir di hari bahagia kami</p>
+    <button id="openInvite" class="btn btn-primary" style="margin-top:12px;">💌 Buka Undangan</button>
   </div>
+</div>
 
-  <div class="wrapper">
-    <div class="card">
-      <div class="ornament o1"></div>
-      <div class="ornament o2"></div>
-      <div class="ornament o3"></div>
+<div class="wrapper">
+<div class="card">
 
-      <!-- HERO -->
-      <!-- HERO (RESTORED) -->
+<div class="ornament o1"></div>
+<div class="ornament o2"></div>
+<div class="ornament o3"></div>
+
+<!-- HERO -->
 <section class="hero">
-  <!-- Gunakan file PNG yang sudah dihapus background (cutout) -->
-
   <div class="hero-inner animate-item">
-    <p class="hero-badge">Undangan Pernikahan</p>
-    <h1 class="hero-title">Pani &amp; Rahma</h1>
+    <p class="section-subtitle" style="color:white;">Undangan Pernikahan</p>
+    <h1 class="hero-title" style="font-family:'Great Vibes'; font-size:46px;">Pani & Rahma</h1>
     <p class="hero-names">Minggu, 04 Januari 2026</p>
+    <p class="hero-date">Pukul 09.00 WIB s.d selesai</p>
+    <p class="hero-location" style="margin-top:6px;">Kp. Sukananjung RT.22/06 Ds. Sukasetia, Cisayong</p>
 
-    <div class="hero-divider"></div>
-
-    <p class="hero-date">Pukul 09.00 WIB s.d. selesai</p>
-    <p class="hero-location">Kp. Sukananjung RT.22/06 Ds. Sukasetia Kec. Cisayong Kab. Tasikmalaya</p>
-
-    <div class="hero-bottom">
-      <div class="countdown" aria-label="Hitung mundur hari pernikahan">
-        <div class="count-box"><div class="count-number" id="cd-days">0</div><div class="count-label">Hari</div></div>
-        <div class="count-box"><div class="count-number" id="cd-hours">0</div><div class="count-label">Jam</div></div>
-        <div class="count-box"><div class="count-number" id="cd-minutes">0</div><div class="count-label">Menit</div></div>
-        <div class="count-box"><div class="count-number" id="cd-seconds">0</div><div class="count-label">Detik</div></div>
-      </div>
-
+    <div class="countdown">
+      <div class="count-box"><div id="cd-days">0</div><small>Hari</small></div>
+      <div class="count-box"><div id="cd-hours">0</div><small>Jam</small></div>
+      <div class="count-box"><div id="cd-minutes">0</div><small>Menit</small></div>
+      <div class="count-box"><div id="cd-seconds">0</div><small>Detik</small></div>
     </div>
   </div>
 </section>
 
+<!-- PEMBUKA -->
+<section class="section animate-item">
+  <p class="section-subtitle">Bismillahirrahmanirrahim</p>
+  <h2 class="section-title">Assalamu'alaikum Warahmatullahi Wabarakatuh</h2>
+  <p style="margin-top:12px;">Dengan memohon rahmat dan ridha Allah SWT kami bermaksud menikahkan putra-putri kami.</p>
 
-      <!-- PEMBUKA -->
-      <section class="section center animate-item">
-        <p class="section-subtitle">Bismillahirrahmanirrahim</p>
-        <h2 class="section-title">Assalamu’alaikum Warahmatullahi Wabarakatuh</h2>
-        <p class="mt-2 muted">Dengan memohon rahmat dan ridha Allah Subhanahu Wa Ta’ala, kami bermaksud menyelenggarakan akad dan resepsi pernikahan putra-putri kami:</p>
+  <p style="margin-top:16px;"><b>Pani Setiawan</b><br><small>Putra ke-3 Bpk. Engkos (Alm) & Ibu Tati</small></p>
+  <p style="font-size:14px; margin:8px 0;">&</p>
+  <p><b>Rahma Pitriyani</b><br><small>Putri pertama Bpk. Herdianto & Ibu Rosmiati</small></p>
+</section>
 
-        <p class="mt-3" style="font-size:16px;">
-          <b>Pani setiawan</b><br/>
-          <span class="muted" style="font-size:12px;">Putra Ke-3 dari Bpk. Engkos (Alm) &amp; Ibu Tati</span>
-        </p>
-        <p style="margin:8px 0;font-size:13px;">&amp;</p>
-        <p style="font-size:16px;">
-          <b>Rahma Pitriyani</b><br/>
-          <span class="muted" style="font-size:12px;">Putri ke-1 dari Bpk. Herdianto &amp; Ibu Rosmiati</span>
-        </p>
-      </section>
+<!-- DOA -->
+<section class="section animate-item">
+  <p class="section-subtitle">Doa & Harapan</p>
+  <p style="font-size:13px; margin-top:10px;">
+    "Dan di antara tanda-tanda kekuasaan-Nya ialah menciptakan pasangan untukmu dari jenismu agar kamu cenderung dan merasa tenteram kepadanya..."
+    <br><small>(QS. Ar-Rum: 21)</small>
+  </p>
+</section>
 
-      <!-- DETAIL ACARA -->
-      <section id="section-detail" class="section animate-item">
-        <p class="section-subtitle">Detail Acara</p>
-        <h2 class="section-title">Waktu &amp; Tempat</h2>
+<!-- PENUTUP -->
+<section class="section animate-item">
+  <p>Merupakan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir & memberikan doa restu.</p>
+  <p style="margin-top:14px;">Wassalamu’alaikum Warahmatullahi Wabarakatuh</p>
+</section>
 
-        <div class="grid grid-2 mt-3">
-          <div class="event-card">
-            <span class="badge">Akad Nikah</span>
-            <div class="event-title">Minggu, 04 Januari 2026</div>
-            <div class="event-time">Pukul 09.00 WIB</div>
-            <div class="event-place">
-              Kp. Sukananjung RT.22/06<br/>
-              Ds. Sukasetia - Kec. Cisayong<br/>
-              Kab. Tasikmalaya
-            </div>
-            <div class="center mt-3"><a href="https://maps.app.goo.gl/9ffuzdY3y8JgxWmY9" target="_blank">📍 Buka Lokasi di Google Maps</a></div>
-          </div>
+</div>
+</div>
 
-          <div class="event-card">
-            <span class="badge" style="background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;">Ngunduh Mantu</span>
-            <div class="event-title">Minggu, 11 Januari 2026</div>
-            <div class="event-time">Pukul 09.00 WIB s.d Selesai</div>
-            <div class="event-place">
-              Kp. Parungsari RT.24 RW.10<br/>
-              Ds. Rawa - Kec. Lumbung<br/>
-              Kab. Ciamis
-            </div>
-            <div class="center mt-3"><a href="https://maps.app.goo.gl/V4mpyQ19sLYSjAK6A" target="_blank">📍 Buka Lokasi di Google Maps</a></div>
-          </div>
-        </div>
-      </section>
+<script>
+// ===== MUSIC =====
+const music=document.getElementById("bg-music");
+const musicBtn=document.getElementById("music-btn");
 
-      <!-- DOA / QUOTE -->
-      <section class="section animate-item">
-        <p class="section-subtitle">Doa & Harapan</p>
-        <div class="quote">
-          <p><b>"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."</b></p>
-          <p style="margin-top:6px;font-size:12px;">(QS. Ar-Rum: 21)</p>
-        </div>
-      </section>
+function fadeTo(target, duration){
+  const start=music.volume;
+  const startTime=performance.now();
+  function frame(now){
+    const progress=Math.min((now-startTime)/duration,1);
+    music.volume=start+(target-start)*progress;
+    if(progress<1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
 
-      <!-- PENUTUP -->
-      <section class="section center animate-item">
-        <p class="muted">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p>
-        <p class="muted mt-2">Wassalamu’alaikum Warahmatullahi Wabarakatuh.</p>
+// ===== SPLASH =====
+const splash=document.getElementById("splash");
+document.getElementById("openInvite").addEventListener("click", async ()=>{
+  splash.classList.add("hidden");
 
-        <p class="mt-3" style="font-size:13px;">Hormat kami yang berbahagia,<br/><b>Keluarga Besar Bpk. Herdianto &amp; Ibu Rosmiati</b> &nbsp;&nbsp; | &nbsp;&nbsp; <b>Keluarga Besar Bpk. Engkos (Alm) &amp; Ibu Tati</b></p>
-      </section>
+  music.volume=0;
+  try{
+    await music.play();
+    fadeTo(0.45, 2500);
+    musicBtn.style.display="flex";
+  }catch{
+    musicBtn.style.display="flex";
+  }
+});
 
-    </div>
+// TOGGLE MUSIC
+musicBtn.addEventListener("click", ()=>{
+  if(music.paused){
+    music.volume=0;
+    music.play();
+    fadeTo(0.45,600);
+    musicBtn.textContent="🔊";
+  } else {
+    fadeTo(0,400);
+    setTimeout(()=>{ music.pause(); musicBtn.textContent="🔇"; },450);
+  }
+});
 
-    <p class="footer">Undangan ini dibuat menggunakan HTML, CSS, dan JavaScript — silakan sesuaikan teks & data sesuai kebutuhan.</p>
-  </div>
+// ===== COUNTDOWN =====
+const target=new Date(2026,0,4,11,0,0);
+function tick(){
+  const now=new Date();
+  const diff=target-now;
+  let d=0,h=0,m=0,s=0;
+  if(diff>0){
+    d=Math.floor(diff/86400000);
+    h=Math.floor((diff%86400000)/3600000);
+    m=Math.floor((diff%3600000)/60000);
+    s=Math.floor((diff%60000)/1000);
+  }
+  document.getElementById("cd-days").textContent=d;
+  document.getElementById("cd-hours").textContent=h;
+  document.getElementById("cd-minutes").textContent=m;
+  document.getElementById("cd-seconds").textContent=s;
+}
+setInterval(tick,1000); tick();
 
-  <script>
-    // ====== SPLASH HANDLER + MUSIC WITH FADE-IN ======
-    const splash = document.getElementById('splash');
-    const openBtn = document.getElementById('openInvite');
-    const music = document.getElementById('bg-music');
-    const musicBtn = document.getElementById('music-btn');
-
-    // target fade volume and duration
-    const TARGET_VOLUME = 0.45;
-    const FADE_DURATION = 2500; // ms
-
-    // ensure music initial volume 0 (so fade-in works)
-    if (music) {
-      music.volume = 0;
+// SCROLL ANIMATION
+const items=document.querySelectorAll(".animate-item");
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add("in-view");
+      obs.unobserve(e.target);
     }
+  })
+},{threshold:0.2});
+items.forEach(i=>obs.observe(i));
+</script>
 
-    // utility: fade volume from current to target in duration ms using rAF
-    function fadeTo(targetVol, duration) {
-      if (!music) return;
-      const startVol = music.volume;
-      const start = performance.now();
-      function frame(now) {
-        const elapsed = now - start;
-        const t = Math.min(elapsed / duration, 1);
-        const newVol = startVol + (targetVol - startVol) * t;
-        music.volume = Math.max(0, Math.min(1, newVol));
-        if (t < 1) requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
-    }
-
-    openBtn.addEventListener('click', async () => {
-      // 1) hide splash (non-destructive)
-      if (splash) splash.style.display = 'none';
-
-      // 2) try play music and fade-in volume
-      if (music) {
-        // if already playing (unlikely), just ensure button shows
-        if (!music.paused) {
-          musicBtn.style.display = 'flex';
-          musicBtn.textContent = '🔊';
-          return;
-        }
-
-        try {
-          // attempt to play (user gesture allows this)
-          await music.play();
-          // start fade-in to target volume
-          fadeTo(TARGET_VOLUME, FADE_DURATION);
-          // show music control
-          musicBtn.style.display = 'flex';
-          musicBtn.textContent = '🔊';
-        } catch (err) {
-          // play blocked: show control so user can manually start
-          console.warn('Audio play blocked or failed:', err);
-          musicBtn.style.display = 'flex';
-          musicBtn.textContent = '🔇';
-          // set a sensible default volume for manual play
-          music.volume = TARGET_VOLUME;
-        }
-      }
-    });
-
-    // music toggle: pause / play (when resuming, set volume to TARGET_VOLUME instantly)
-    musicBtn.addEventListener('click', async () => {
-      if (!music) return;
-      if (music.paused) {
-        try {
-          // set volume low then fade quickly for nicer UX
-          music.volume = 0;
-          await music.play();
-          fadeTo(TARGET_VOLUME, 600); // quick fade when manually toggling
-          musicBtn.textContent = '🔊';
-        } catch (err) {
-          console.warn('Play failed:', err);
-        }
-      } else {
-        // fade out quickly then pause
-        fadeTo(0, 400);
-        setTimeout(() => {
-          music.pause();
-          musicBtn.textContent = '🔇';
-        }, 420);
-      }
-    });
-
-    // ====== COUNTDOWN ======
-    const weddingDate = new Date(2026, 0, 4, 11, 0, 0); // 04 Jan 2026 11:00
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = weddingDate.getTime() - now;
-
-      const dEl = document.getElementById('cd-days');
-      const hEl = document.getElementById('cd-hours');
-      const mEl = document.getElementById('cd-minutes');
-      const sEl = document.getElementById('cd-seconds');
-      if (!dEl || !hEl || !mEl || !sEl) return;
-
-      if (distance <= 0) {
-        dEl.textContent = 0; hEl.textContent = 0; mEl.textContent = 0; sEl.textContent = 0;
-        return;
-      }
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      dEl.textContent = days;
-      hEl.textContent = hours;
-      mEl.textContent = minutes;
-      sEl.textContent = seconds;
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    // ====== SCROLL ANIMATION ======
-    const animatedItems = document.querySelectorAll('.animate-item');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    animatedItems.forEach(item => observer.observe(item));
-  </script>
 </body>
 </html>
-
-
-
-
-
