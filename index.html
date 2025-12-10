@@ -66,50 +66,69 @@
 
     /* HERO (foto dipasang sebagai <img> agar responsif) */
     /* ===== HERO (restored responsive version) ===== */
+/* HERO - gambar sekarang pakai <img> bukan background-image */
 .hero {
-  /* hanya overlay tipis (biar teks tetap terbaca) */
-  background: linear-gradient(rgba(3,37,114,0.42), rgba(3,37,114,0.42));
+  background:
+    linear-gradient(rgba(3,37,114,0.56), rgba(3,37,114,0.56)),
+    url('undangan.jpg') no-repeat center right / cover;
   color: white;
   padding: 42px 20px 30px;
   text-align: center;
-  position: relative;        /* posisi relatif untuk hero-photo absolute */
+  position: relative;
   z-index: 1;
   min-height: 360px;
   display:flex;
   align-items:center;
   justify-content:center;
   flex-direction:column;
-  overflow: hidden;
+  background-attachment: scroll; /* hero biasanya scroll */
 }
+/* teks tetap di atas gambar */
+.hero .hero-inner { position: relative; z-index: 2; max-width: 720px; }
 
-/* foto pasangan sebagai elemen <img> - gunakan file PNG cutout transparan */
+/* gambar pasangan yang diposisikan di kanan desktop 
 .hero-photo {
   position: absolute;
-  right: 28px;               /* jarak dari kanan card */
-  bottom: 0;                 /* rata bawah card */
-  max-width: 46%;            /* lebar responsif relatif ke card */
+  right: 28px;               /* jarak ke kanan card *
+  bottom: 0;                 /* rata bawah card *
+  max-width: 46%;            /* lebar gambar relatif ke card *
   height: auto;
   object-fit: contain;
-  z-index: 1;                /* gambar berada di bawah teks (hero-inner z-index:2) */
-  pointer-events: none;      /* biar tidak mengganggu klik */
-  transform: translateY(6%);
+  z-index: 1;                /* di bawah .hero-inner (z-index 2) *
+  pointer-events: none;      /* biar nggak ganggu klik *
+  transform: translateY(6%); * sedikit turun supaya proporsional *
   transition: transform .25s ease, max-width .2s ease, right .2s ease;
-  opacity: 1;
-}
+  filter: none;              /* bisa di-blur kalau mau *
+}*/
 
-/* teks di atas gambar */
-.hero-inner { position: relative; z-index: 2; max-width: 780px; padding: 0 14px; }
-
-/* responsive tweaks: kecilkan gambar di tablet, sembunyikan di mobile */
+/* versi tablet: kecilkan gambar agar tidak menutupi teks */
 @media (max-width: 1024px) {
   .hero-photo { max-width: 38%; right: 18px; transform: translateY(4%); }
+  .hero { min-height: 380px; }
 }
+
+/* versi mobile: pindahkan gambar ke tengah atas atau sembunyikan */
 @media (max-width: 640px) {
-  .hero-photo { display: none; } /* pastikan tidak memotong teks di layar kecil */
+  /* Pilihan A: sembunyikan gambar di mobile */
+  .hero-photo { display: none; }
+
+  /* Jika Anda ingin menampilkan tapi tidak memotong, gunakan ini instead:
+  .hero-photo {
+    display:block;
+    position:absolute;
+    right:50%;
+    transform: translate(20%, -8%);
+    max-width: 60%;
+    opacity:0.95;
+  }
+  */
   .hero { padding: 28px 14px; min-height: 300px; }
   .hero-title { font-size: 34px; }
   .hero-names { font-size: 16px; }
 }
+
+/* opsional: jika ingin blur halus pada gambar */
+.hero-photo.blur { filter: blur(2px) brightness(.95); }
 
 
     /* BUTTONS */
@@ -458,5 +477,6 @@
   </script>
 </body>
 </html>
+
 
 
