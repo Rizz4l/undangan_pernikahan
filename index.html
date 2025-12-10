@@ -65,59 +65,85 @@
     }
 
     /* HERO (foto dipasang sebagai <img> agar responsif) */
-    /* ===== HERO (restored responsive version) ===== */
-/* HERO - gambar sekarang pakai <img> bukan background-image */
+  /* ===== HERO RESPONSIVE BARU ===== */
 .hero {
-  /* overlay + gambar */
+  position: relative;
+  color: white;
+  text-align: center;
+  padding: 40px 20px 32px;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* background foto + overlay dibuat via ::before agar mudah responsif */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background-image:
     linear-gradient(rgba(3,37,114,0.56), rgba(3,37,114,0.56)),
     url('undangan.jpg');
   background-repeat: no-repeat;
-  background-size: cover;            /* selalu scale untuk menutupi area */
-  background-position: right center; /* desktop: gambar di kanan */
-  color: white;
-  padding: 42px 20px 30px;
-  text-align: center;
+  background-size: cover;          /* selalu penuh */
+  background-position: center;     /* default: tengah */
+  z-index: -1;
+}
+
+/* konten teks tetap di atas gambar */
+.hero .hero-inner {
   position: relative;
   z-index: 1;
-  min-height: 360px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  overflow: hidden;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
+  max-width: 720px;
 }
 
-/* teks tetap di atas gambar */
-.hero .hero-inner { position: relative; z-index: 2; max-width: 720px; }
+/* ukuran teks default (desktop / tablet) */
+.hero-title {
+  font-size: 40px;
+  font-weight: 700;
+}
+.hero-names,
+.hero-date,
+.hero-location {
+  font-size: 16px;
+}
 
-/* TABLET: sedikit ubah posisi supaya wajah tidak terpotong */
+/* TABLET */
 @media (max-width: 1024px) {
   .hero {
-    background-position: center right; /* geser sedikit ke tengah-kanan */
-    min-height: 380px;
-    padding: 40px 18px;
+    min-height: 340px;
+    padding: 34px 18px;
+  }
+  .hero::before {
+    background-position: center top; /* geser ke atas biar wajah tidak kepotong */
   }
 }
 
-/* MOBILE: posisikan gambar ke tengah-atas agar wajah terlihat (jangan paksa right) */
+/* MOBILE */
 @media (max-width: 640px) {
   .hero {
-    background-position: center top;  /* penting: tampilkan bagian atas foto */
-    background-size: cover;
-    padding: 28px 14px;
-    min-height: 340px;                /* cukup tinggi agar teks dan gambar muat */
+    min-height: 320px;
+    padding: 26px 14px;
   }
 
-  /* teks lebih kecil agar muat */
-  .hero-title { font-size: 34px; }
-  .hero-names { font-size: 16px; }
+  .hero-title {
+    font-size: 32px;
+  }
+  .hero-names,
+  .hero-date,
+  .hero-location {
+    font-size: 14px;
+  }
 }
 
-/* opsional: jika ingin blur halus pada gambar */
-.hero-photo.blur { filter: blur(2px) brightness(.95); }
+/* kalau mau ada efek blur tipis di foto */
+.hero.blur::before {
+  filter: blur(1.5px) brightness(.98);
+}
 
 
     /* BUTTONS */
@@ -462,6 +488,7 @@
   </script>
 </body>
 </html>
+
 
 
 
