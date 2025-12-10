@@ -426,6 +426,15 @@
 </head>
 <body>
 
+  <audio id="bg-music" loop preload="auto">
+  <source src="videoplayback.mp3" type="audio/mpeg">
+</audio>
+  <button id="music-btn"
+  style="position:fixed;right:18px;bottom:18px;width:52px;height:52px;border-radius:50%;
+  display:none;background:#fff;box-shadow:0 6px 16px rgba(0,0,0,0.2);border:none;font-size:18px;">
+  🔊
+</button>
+
 <!-- SPLASH COVER "BUKA UNDANGAN" -->
 <div id="splash" class="splash">
   <div class="splash-inner">
@@ -603,71 +612,33 @@
 </div>
 
 <script>
-  // ====== SPLASH HANDLER ======
-  const splash = document.getElementById('splash');
-  const openBtn = document.getElementById('openInvite');
+// ====== SPLASH + PLAY MUSIC SAAT TEKAN "BUKA UNDANGAN" ======
+const splash = document.getElementById('splash');
+const openBtn = document.getElementById('openInvite');
+const music = document.getElementById('bg-music');
+const musicBtn = document.getElementById('music-btn');
 
-  openBtn.addEventListener('click', () => {
-    splash.classList.add('hidden');
-  });
+openBtn.addEventListener('click', async () => {
+  // Hilangkan splash
+  splash.classList.add('hidden');
 
-  // ====== COUNTDOWN ======
-  // TANGGAL PERNIKAHAN: 04 Januari 2026 jam 11:00 (waktu acara resepsi)
-  const weddingDate = new Date(2026, 0, 4, 11, 0, 0); // (tahun, bulan-1, tanggal, jam, menit)
-
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = weddingDate.getTime() - now;
-
-    const dEl = document.getElementById('cd-days');
-    const hEl = document.getElementById('cd-hours');
-    const mEl = document.getElementById('cd-minutes');
-    const sEl = document.getElementById('cd-seconds');
-
-    if (distance <= 0) {
-      dEl.textContent = 0;
-      hEl.textContent = 0;
-      mEl.textContent = 0;
-      sEl.textContent = 0;
-      return;
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    dEl.textContent = days;
-    hEl.textContent = hours;
-    mEl.textContent = minutes;
-    sEl.textContent = seconds;
+  // Setelah tombol ditekan, coba mainkan musik
+  try {
+    await music.play();
+    musicBtn.style.display = 'flex';
+    musicBtn.innerHTML = '🔊';
+  } catch (err) {
+    // Jika gagal (biasanya di iPhone) tampilkan tombol manual
+    musicBtn.style.display = 'flex';
+    musicBtn.innerHTML = '🔇';
   }
+});
 
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-
-  // ====== SCROLL ANIMATION ======
-  const animatedItems = document.querySelectorAll('.animate-item');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.2
-  });
-
-  animatedItems.forEach(item => observer.observe(item));
-
-  // OPTIONAL: AUTOCLOSE SPLASH KALAU DIREFRESH (misal setelah 3 detik)
-  // setTimeout(() => { splash.classList.add('hidden'); }, 3000);
 </script>
 
 </body>
 </html>
+
 
 
 
