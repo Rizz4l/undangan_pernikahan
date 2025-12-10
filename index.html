@@ -612,27 +612,80 @@
 </div>
 
 <script>
-// ====== SPLASH + PLAY MUSIC SAAT TEKAN "BUKA UNDANGAN" ======
+// elemen yang dipakai
 const splash = document.getElementById('splash');
 const openBtn = document.getElementById('openInvite');
 const music = document.getElementById('bg-music');
 const musicBtn = document.getElementById('music-btn');
 
-openBtn.addEventListener('click', async () => {
-  // Hilangkan splash
-  splash.classList.add('hidden');
+// atur volume background agar tidak mengganggu (0.0 - 1.0)
+if (music) music.volume = 0.45; // pelan, background music
 
-  // Setelah tombol ditekan, coba mainkan musik
-  try {
-    await music.play();
-    musicBtn.style.display = 'flex';
-    musicBtn.innerHTML = '🔊';
-  } catch (err) {
-    // Jika gagal (biasanya di iPhone) tampilkan tombol manual
-    musicBtn.style.display = 'flex';
-    musicBtn.innerHTML = '🔇';
-  }
+// handler aman untuk tombol "Buka Undangan"
+openBtn.addEventListener('click', async (e) => {
+  // 1) sembunyikan splash (tanpa menyentuh elemen lain)
+  if (splash) splash.style.display = 'none';
+
+  // 2) coba mainkan musik (user gesture dari klik ini umumnya mengizinkan play)
+  // toggle tombol play/pause
+if (musicBtn) {
+  musicBtn.addEventListener('click', async () => {
+    if (!music) return;
+    if (music.paused) {
+      try {
+        await music.play();
+        musicBtn.textContent = '🔊';
+      } catch (err) {
+        console.warn('Play failed:', err);
+      }
+    } else {
+      music.pause();
+      musicBtn.textContent = '🔇';
+    }
+  });
+}
+
 });
+
+  // ====== COUNTDOWN ======
+  const weddingDate = new Date(2026, 0, 4, 11, 0, 0); // 04 Jan 2026 11:00
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate.getTime() - now;
+
+    const dEl = document.getElementById('cd-days');
+    const hEl = document.getElementById('cd-hours');
+    const mEl = document.getElementById('cd-minutes');
+    const sEl = document.getElementById('cd-seconds');
+    if (!dEl || !hEl || !mEl || !sEl) return;
+
+    if (distance <= 0) {
+      dEl.textContent = 0; hEl.textContent = 0; mEl.textContent = 0; sEl.textContent = 0;
+      return;
+    }
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    dEl.textContent = days;
+    hEl.textContent = hours;
+    mEl.textContent = minutes;
+    sEl.textContent = seconds;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ====== SCROLL ANIMATION ======
+  const animatedItems = document.querySelectorAll('.animate-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  animatedItems.forEach(item => observer.observe(item));
 
 </script>
 
